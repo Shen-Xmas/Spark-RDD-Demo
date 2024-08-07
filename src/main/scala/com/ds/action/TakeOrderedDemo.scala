@@ -15,8 +15,8 @@ object TakeOrderedDemo {
       Girl("Alice", 12, 56)
       , Girl("Lily", 19, 50)
       , Girl("July", 23, 62)
-      , Girl("Nana", 28, 48)
-      , Girl("Mary", 11, 39)
+      , Girl("Nana", 19, 48)
+      , Girl("Mary", 19, 48)
     )
 
 //    // Ordering.by
@@ -25,19 +25,46 @@ object TakeOrderedDemo {
 //      .takeOrdered(2)(Ordering.by[Girl, Int](_.age))
 //      .foreach(println)
 
-    // fromLessThan
+//    // fromLessThan
+//    sc.makeRDD(list)
+//      .takeOrdered(2)(Ordering.fromLessThan[Girl](_.age > _.age))
+//      .foreach(println)
+
+    // 自定义比较 1  因为Girl类型编写后本身可排序了 不用传其他参数
+//    sc.makeRDD(list)
+//      .takeOrdered(5)
+//      .foreach(println)
+
+    // 自定义比较 2  因为Girl类型编写后本身可排序了 不用传其他参数
     sc.makeRDD(list)
-      .takeOrdered(2)(Ordering.fromLessThan[Girl](_.age > _.age))
+      .takeOrdered(5)(Ordering.by(customGirlOrdered))
       .foreach(println)
 
   }
 
-//  case class Girl(name: String, age: Int, weight:Int) {
-//    override def toString: String = s"name is ${name}, age is ${age}, weight is ${weight}"
-//  }
-  // 自定义排序的写法
+
   case class Girl(name: String, age: Int, weight:Int) {
     override def toString: String = s"name is ${name}, age is ${age}, weight is ${weight}"
   }
+
+//  // 自定义排序的写法 1
+//  case class Girl(name: String, age: Int, weight:Int) extends Ordered[Girl] {
+//    // 例如 先比较年龄 再比较体重 最后比较名字
+//    override def compare(that: Girl): Int = {
+//      var result = this.age - that.age
+//      if(result == 0) {
+//        result = this.weight - that.weight
+//        if(result == 0) {
+//          result = this.name.compareTo(that.name)
+//        }
+//      }
+//      result
+//    }
+//
+//    override def toString: String = s"name is ${name}, age is ${age}, weight is ${weight}"
+//  }
+
+  // 自定义排序的写法 2
+  def customGirlOrdered(girl: Girl) = (girl.age, girl.weight, girl.name)
 
 }
