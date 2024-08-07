@@ -11,7 +11,7 @@ object TakeOrderedDemo {
 //      .takeOrdered(2)
 //      .foreach(println)
 
-    var list = List(
+    val list = List(
       Girl("Alice", 12, 56)
       , Girl("Lily", 19, 50)
       , Girl("July", 23, 62)
