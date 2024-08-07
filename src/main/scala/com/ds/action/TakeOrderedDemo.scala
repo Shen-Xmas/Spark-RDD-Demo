@@ -65,6 +65,6 @@ object TakeOrderedDemo {
 //  }
 
   // 自定义排序的写法 2
-  def customGirlOrdered(girl: Girl) = (girl.age, girl.weight, girl.name)
+  private def customGirlOrdered(girl: Girl) = (girl.age, girl.weight, girl.name)
 
 }
