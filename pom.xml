@@ -77,7 +77,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.ds.Hello</mainClass>
+                            <mainClass>com.ds.WordCount</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
