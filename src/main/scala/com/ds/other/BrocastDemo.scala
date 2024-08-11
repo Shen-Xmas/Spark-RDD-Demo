@@ -4,6 +4,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object BrocastDemo {
   def main(args: Array[String]): Unit = {
+    // 广播变量变量 executor  只可读 不可写
     val conf = new SparkConf().setMaster("local[*]").setAppName("brocast demo")
     val sc = new SparkContext(conf)
 
