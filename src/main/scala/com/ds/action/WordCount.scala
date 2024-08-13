@@ -1,4 +1,4 @@
-package com.ds
+package com.ds.action
 
 import org.apache.spark.{SparkConf, SparkContext}
 
