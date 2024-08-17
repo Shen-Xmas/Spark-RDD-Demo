@@ -7,7 +7,7 @@ object MapPartitionsDemo {
     // local默认做1个分区
     val conf = new SparkConf().setMaster("local").setAppName("MapPartitions Demo")
     val context = new SparkContext(conf)
-    context.parallelize(Array(1, 2, 3, 4, 5), 2)
+    context.parallelize(Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 2)
       .mapPartitions{
         iter => {  // 分区中的所有数据
           var result = List[Int]()
